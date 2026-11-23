@@ -41,48 +41,43 @@ function getInfoPerangkat() {
 }
 
 let cachedIP = sessionStorage.getItem("gbw_visitor_ip") || null;
-let ipFetchPromise = null;
 
 async function getPublicIP() {
   if (cachedIP && cachedIP !== "Tidak Terdeteksi") return cachedIP;
-  if (ipFetchPromise) return ipFetchPromise;
-
-  ipFetchPromise = (async () => {
-    try {
-      const res = await fetch("https://api.ipify.org?format=json");
-      if (res.ok) {
-        const data = await res.json();
-        if (data.ip) {
-          cachedIP = data.ip;
-          sessionStorage.setItem("gbw_visitor_ip", cachedIP);
-          return cachedIP;
-        }
+  try {
+    const res = await fetch("https://api.ipify.org?format=json");
+    if (res.ok) {
+      const data = await res.json();
+      if (data.ip) {
+        cachedIP = data.ip;
+        sessionStorage.setItem("gbw_visitor_ip", cachedIP);
+        return cachedIP;
       }
-    } catch (e) {
-      // Abaikan jika diblokir adblocker
-    } finally {
-      ipFetchPromise = null;
     }
-    return cachedIP || "Tidak Terdeteksi";
-  })();
-
-  return ipFetchPromise;
+  } catch (e) {
+    console.warn("Gagal ambil IP:", e);
+  }
+  return "Tidak Terdeteksi";
 }
 
 async function tambahSatuKeFirebase(path) {
   try {
     const getRes = await fetch(`${FIREBASE_DB_URL}/${path}.json`);
+    if (!getRes.ok) {
+      console.error("Gagal baca Firebase:", path, getRes.status);
+      return;
+    }
     const currentVal = await getRes.json();
     const nextVal = (typeof currentVal === "number" ? currentVal : 0) + 1;
 
-    await fetch(`${FIREBASE_DB_URL}/${path}.json`, {
+    const putRes = await fetch(`${FIREBASE_DB_URL}/${path}.json`, {
       method: "PUT",
-      keepalive: true,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nextVal)
     });
+    if (!putRes.ok) console.error("Gagal tulis Firebase:", path, putRes.status);
   } catch (err) {
-    // Jangan ganggu pengalaman user jika offline
+    console.error("Error Firebase:", path, err);
   }
 }
 
@@ -111,17 +106,15 @@ async function catatKunjunganHalaman() {
       asal_link: asalLink
     };
 
-    await Promise.all([
-      tambahSatuKeFirebase(`analytics/daily_visits/${waktu.dateKey}`),
-      fetch(`${FIREBASE_DB_URL}/analytics/visit_logs/${waktu.dateKey}.json`, {
-        method: "POST",
-        keepalive: true,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      })
-    ]);
+    await tambahSatuKeFirebase(`analytics/daily_visits/${waktu.dateKey}`);
+    const logRes = await fetch(`${FIREBASE_DB_URL}/analytics/visit_logs/${waktu.dateKey}.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!logRes.ok) console.error("Gagal kirim visit_logs:", logRes.status);
   } catch (err) {
-    // Fail silently
+    console.error("Error catatKunjunganHalaman:", err);
   }
 }
 
@@ -140,21 +133,18 @@ function lacakKlikTombol(el) {
 
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/label.json`, {
     method: "PUT",
-    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(btnLabel)
   }).catch(() => {});
 
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/group.json`, {
     method: "PUT",
-    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(btnGroup)
   }).catch(() => {});
 
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/last_clicked.json`, {
     method: "PUT",
-    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(`${waktu.hari}, ${waktu.tanggal} (${waktu.jam})`)
   }).catch(() => {});
@@ -177,10 +167,13 @@ function lacakKlikTombol(el) {
 
     fetch(`${FIREBASE_DB_URL}/analytics/button_click_logs/${waktu.dateKey}.json`, {
       method: "POST",
-      keepalive: true,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(clickLog)
-    }).catch(() => {});
+    })
+      .then((res) => {
+        if (!res.ok) console.error("Gagal kirim button_click_logs:", res.status);
+      })
+      .catch((err) => console.error("Error kirim button_click_logs:", err));
   };
 
   if (cachedIP && cachedIP !== "Tidak Terdeteksi") {
@@ -191,10 +184,8 @@ function lacakKlikTombol(el) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Catat Kunjungan Halaman
   catatKunjunganHalaman();
 
-  // 2. Pelacak Klik Tombol (Otomatis + Manual via data-track-id)
   document.addEventListener("click", (e) => {
     const target = e.target.closest("[data-track-id], a[href*='wa.me'], a[href*='api.whatsapp.com'], a[href*='maps'], a[href^='tel:'], .btn");
     if (!target) return;
