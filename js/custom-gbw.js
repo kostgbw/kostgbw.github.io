@@ -122,48 +122,51 @@ function lacakKlikTombol(el) {
   const waktu = getWaktuWIB();
   const device = getInfoPerangkat();
   const urlTujuan = el.getAttribute("href") || "-";
+  const ip = cachedIP || "Tidak Terdeteksi";
 
   tambahSatuKeFirebase(`analytics/button_clicks/${btnId}/total`);
   tambahSatuKeFirebase(`analytics/button_clicks_daily/${waktu.dateKey}/${btnId}`);
 
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/label.json`, {
     method: "PUT",
+    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(btnLabel)
   }).catch(() => {});
 
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/group.json`, {
     method: "PUT",
+    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(btnGroup)
   }).catch(() => {});
 
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/last_clicked.json`, {
     method: "PUT",
+    keepalive: true,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(`${waktu.hari}, ${waktu.tanggal} (${waktu.jam})`)
   }).catch(() => {});
 
-  getPublicIP().then((ip) => {
-    const clickLog = {
-      ip,
-      tombol_id: btnId,
-      nama_tombol: btnLabel,
-      grup: btnGroup,
-      hari: waktu.hari,
-      tanggal: waktu.tanggal,
-      jam: waktu.jam,
-      timestamp: waktu.timestamp,
-      perangkat: device.tipePerangkat,
-      url_tujuan: urlTujuan
-    };
+  const clickLog = {
+    ip,
+    tombol_id: btnId,
+    nama_tombol: btnLabel,
+    grup: btnGroup,
+    hari: waktu.hari,
+    tanggal: waktu.tanggal,
+    jam: waktu.jam,
+    timestamp: waktu.timestamp,
+    perangkat: device.tipePerangkat,
+    url_tujuan: urlTujuan
+  };
 
-    fetch(`${FIREBASE_DB_URL}/analytics/button_click_logs/${waktu.dateKey}.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(clickLog)
-    }).catch(() => {});
-  });
+  fetch(`${FIREBASE_DB_URL}/analytics/button_click_logs/${waktu.dateKey}.json`, {
+    method: "POST",
+    keepalive: true,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(clickLog)
+  }).catch(() => {});
 }
 
 document.addEventListener("DOMContentLoaded", () => {
