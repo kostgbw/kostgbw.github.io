@@ -186,6 +186,21 @@ function lacakKlikTombol(el) {
 document.addEventListener("DOMContentLoaded", () => {
   catatKunjunganHalaman();
 
+  // 1. Inisialisasi Fancybox Lightbox Galeri (agar foto tidak terbuka di tab baru)
+  if (typeof Fancybox !== "undefined") {
+    Fancybox.bind('[data-fancybox="gallery"]', {
+      Thumbs: false,
+      Toolbar: {
+        display: {
+          left: ["infobar"],
+          middle: [],
+          right: ["zoomIn", "zoomOut", "close"]
+        }
+      }
+    });
+  }
+
+  // 2. Pelacakan Klik Tombol & Galeri
   document.addEventListener("click", (e) => {
     const target = e.target.closest(
       "[data-track-id], [data-track], .accordion-button, a[href*='wa.me'], a[href*='api.whatsapp.com'], a[href*='maps'], a[href^='tel:'], .btn"
