@@ -40,20 +40,33 @@ function getInfoPerangkat() {
   return { tipePerangkat, os, browser };
 }
 
-let cachedIP = null;
+let cachedIP = sessionStorage.getItem("gbw_visitor_ip") || null;
+let ipFetchPromise = null;
+
 async function getPublicIP() {
-  if (cachedIP) return cachedIP;
-  try {
-    const res = await fetch("https://api.ipify.org?format=json");
-    if (res.ok) {
-      const data = await res.json();
-      cachedIP = data.ip || "Tidak Terdeteksi";
-      return cachedIP;
+  if (cachedIP && cachedIP !== "Tidak Terdeteksi") return cachedIP;
+  if (ipFetchPromise) return ipFetchPromise;
+
+  ipFetchPromise = (async () => {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.ip) {
+          cachedIP = data.ip;
+          sessionStorage.setItem("gbw_visitor_ip", cachedIP);
+          return cachedIP;
+        }
+      }
+    } catch (e) {
+      // Abaikan jika diblokir adblocker
+    } finally {
+      ipFetchPromise = null;
     }
-  } catch (e) {
-    // Abaikan jika diblokir adblocker
-  }
-  return "Tidak Terdeteksi";
+    return cachedIP || "Tidak Terdeteksi";
+  })();
+
+  return ipFetchPromise;
 }
 
 async function tambahSatuKeFirebase(path) {
@@ -64,6 +77,7 @@ async function tambahSatuKeFirebase(path) {
 
     await fetch(`${FIREBASE_DB_URL}/${path}.json`, {
       method: "PUT",
+      keepalive: true,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nextVal)
     });
@@ -75,15 +89,12 @@ async function tambahSatuKeFirebase(path) {
 async function catatKunjunganHalaman() {
   try {
     const waktu = getWaktuWIB();
+    const ip = await getPublicIP();
     const sessionKey = `gbw_visited_${waktu.dateKey}`;
     if (sessionStorage.getItem(sessionKey)) return;
     sessionStorage.setItem(sessionKey, "1");
 
-    const [ip, device] = await Promise.all([
-      getPublicIP(),
-      Promise.resolve(getInfoPerangkat())
-    ]);
-
+    const device = getInfoPerangkat();
     const params = new URLSearchParams(window.location.search);
     const asalLink = params.get("utm_source") || params.get("ref") || document.referrer || "Langsung (Direct)";
 
@@ -104,6 +115,7 @@ async function catatKunjunganHalaman() {
       tambahSatuKeFirebase(`analytics/daily_visits/${waktu.dateKey}`),
       fetch(`${FIREBASE_DB_URL}/analytics/visit_logs/${waktu.dateKey}.json`, {
         method: "POST",
+        keepalive: true,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       })
@@ -122,7 +134,6 @@ function lacakKlikTombol(el) {
   const waktu = getWaktuWIB();
   const device = getInfoPerangkat();
   const urlTujuan = el.getAttribute("href") || "-";
-  const ip = cachedIP || "Tidak Terdeteksi";
 
   tambahSatuKeFirebase(`analytics/button_clicks/${btnId}/total`);
   tambahSatuKeFirebase(`analytics/button_clicks_daily/${waktu.dateKey}/${btnId}`);
@@ -148,38 +159,46 @@ function lacakKlikTombol(el) {
     body: JSON.stringify(`${waktu.hari}, ${waktu.tanggal} (${waktu.jam})`)
   }).catch(() => {});
 
-  const clickLog = {
-    ip,
-    tombol_id: btnId,
-    nama_tombol: btnLabel,
-    grup: btnGroup,
-    hari: waktu.hari,
-    tanggal: waktu.tanggal,
-    jam: waktu.jam,
-    timestamp: waktu.timestamp,
-    perangkat: device.tipePerangkat,
-    url_tujuan: urlTujuan
+  const kirimLogKlik = (ipFinal) => {
+    const clickLog = {
+      ip: ipFinal,
+      tombol_id: btnId,
+      nama_tombol: btnLabel,
+      grup: btnGroup,
+      hari: waktu.hari,
+      tanggal: waktu.tanggal,
+      jam: waktu.jam,
+      timestamp: waktu.timestamp,
+      perangkat: device.tipePerangkat,
+      os: device.os,
+      browser: device.browser,
+      url_tujuan: urlTujuan
+    };
+
+    fetch(`${FIREBASE_DB_URL}/analytics/button_click_logs/${waktu.dateKey}.json`, {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(clickLog)
+    }).catch(() => {});
   };
 
-  fetch(`${FIREBASE_DB_URL}/analytics/button_click_logs/${waktu.dateKey}.json`, {
-    method: "POST",
-    keepalive: true,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(clickLog)
-  }).catch(() => {});
+  if (cachedIP && cachedIP !== "Tidak Terdeteksi") {
+    kirimLogKlik(cachedIP);
+  } else {
+    getPublicIP().then((ipFinal) => kirimLogKlik(ipFinal));
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Catat Kunjungan Halaman
   catatKunjunganHalaman();
 
-  // 2. Pelacak Klik Tombol
-// 2. Pelacak Klik Tombol (Otomatis + Manual via data-track-id)
+  // 2. Pelacak Klik Tombol (Otomatis + Manual via data-track-id)
   document.addEventListener("click", (e) => {
     const target = e.target.closest("[data-track-id], a[href*='wa.me'], a[href*='api.whatsapp.com'], a[href*='maps'], a[href^='tel:'], .btn");
     if (!target) return;
 
-    // Jika belum punya data-track-id, buatkan ID otomatis dari teks/href tombol
     if (!target.getAttribute("data-track-id")) {
       const rawText = (target.innerText || target.getAttribute("aria-label") || "tombol")
         .trim()
