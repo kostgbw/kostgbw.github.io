@@ -119,14 +119,14 @@ async function catatKunjunganHalaman() {
 }
 
 function lacakKlikTombol(el) {
-  const btnId = el.getAttribute("data-track-id");
-  const btnLabel = el.getAttribute("data-track-label") || el.innerText.trim() || btnId;
-  const btnGroup = el.getAttribute("data-track-group") || "lainnya";
+  const btnId = (el.getAttribute("data-track-id") || el.getAttribute("data-track") || "").trim();
+  const btnLabel = (el.getAttribute("data-track-label") || el.innerText.trim() || btnId).slice(0, 100);
+  const btnGroup = (el.getAttribute("data-track-group") || "lainnya").slice(0, 40);
   if (!btnId) return;
 
   const waktu = getWaktuWIB();
   const device = getInfoPerangkat();
-  const urlTujuan = el.getAttribute("href") || "-";
+  const urlTujuan = el.getAttribute("href") || el.getAttribute("data-bs-target") || "-";
 
   tambahSatuKeFirebase(`analytics/button_clicks/${btnId}/total`);
   tambahSatuKeFirebase(`analytics/button_clicks_daily/${waktu.dateKey}/${btnId}`);
@@ -146,7 +146,7 @@ function lacakKlikTombol(el) {
   fetch(`${FIREBASE_DB_URL}/analytics/button_clicks/${btnId}/last_clicked.json`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(`${waktu.hari}, ${waktu.tanggal} (${waktu.jam})`)
+    body: JSON.stringify(`${waktu.hari}, ${waktu.tanggal} (${waktu.jam})`.slice(0, 60))
   }).catch(() => {});
 
   const kirimLogKlik = (ipFinal) => {
@@ -187,10 +187,15 @@ document.addEventListener("DOMContentLoaded", () => {
   catatKunjunganHalaman();
 
   document.addEventListener("click", (e) => {
-    const target = e.target.closest("[data-track-id], a[href*='wa.me'], a[href*='api.whatsapp.com'], a[href*='maps'], a[href^='tel:'], .btn");
+    const target = e.target.closest(
+      "[data-track-id], [data-track], .accordion-button, a[href*='wa.me'], a[href*='api.whatsapp.com'], a[href*='maps'], a[href^='tel:'], .btn"
+    );
     if (!target) return;
 
-    if (!target.getAttribute("data-track-id")) {
+    const existingId = target.getAttribute("data-track-id") || target.getAttribute("data-track");
+    if (existingId) {
+      target.setAttribute("data-track-id", existingId.trim());
+    } else {
       const rawText = (target.innerText || target.getAttribute("aria-label") || "tombol")
         .trim()
         .toLowerCase()
@@ -201,9 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
       let grup = "umum";
       if (href.includes("wa.me") || href.includes("whatsapp")) grup = "whatsapp";
       else if (href.includes("maps")) grup = "lokasi";
+      else if (target.classList.contains("accordion-button")) grup = "FAQ";
       else if (target.closest("#mainNav")) grup = "navbar";
 
-      target.setAttribute("data-track-id", `${grup}_${rawText || "klik"}`);
+      target.setAttribute("data-track-id", `${grup.toLowerCase()}_${rawText || "klik"}`);
       target.setAttribute("data-track-label", target.innerText.trim() || href || "Tombol");
       target.setAttribute("data-track-group", grup);
     }
