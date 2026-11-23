@@ -174,8 +174,31 @@ document.addEventListener("DOMContentLoaded", () => {
   catatKunjunganHalaman();
 
   // 2. Pelacak Klik Tombol
-  document.querySelectorAll("[data-track-id]").forEach((el) => {
-    el.addEventListener("click", () => lacakKlikTombol(el));
+// 2. Pelacak Klik Tombol (Otomatis + Manual via data-track-id)
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest("[data-track-id], a[href*='wa.me'], a[href*='api.whatsapp.com'], a[href*='maps'], a[href^='tel:'], .btn");
+    if (!target) return;
+
+    // Jika belum punya data-track-id, buatkan ID otomatis dari teks/href tombol
+    if (!target.getAttribute("data-track-id")) {
+      const rawText = (target.innerText || target.getAttribute("aria-label") || "tombol")
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_|_$/g, "")
+        .slice(0, 32);
+      const href = target.getAttribute("href") || "";
+      let grup = "umum";
+      if (href.includes("wa.me") || href.includes("whatsapp")) grup = "whatsapp";
+      else if (href.includes("maps")) grup = "lokasi";
+      else if (target.closest("#mainNav")) grup = "navbar";
+
+      target.setAttribute("data-track-id", `${grup}_${rawText || "klik"}`);
+      target.setAttribute("data-track-label", target.innerText.trim() || href || "Tombol");
+      target.setAttribute("data-track-group", grup);
+    }
+
+    lacakKlikTombol(target);
   });
 
   // 3. Filter Galeri Foto
