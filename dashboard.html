@@ -104,6 +104,13 @@
       border-radius: 6px;
     }
 
+    .btn-row-del {
+      padding: 0.2rem 0.45rem;
+      font-size: 0.76rem;
+      line-height: 1.2;
+      border-radius: 6px;
+    }
+
     dialog::backdrop {
       background: rgba(15, 23, 42, 0.45);
       backdrop-filter: blur(2px);
@@ -184,7 +191,7 @@
             <span class="small fw-semibold tabular-nums" id="liveClockLabel">-</span>
           </div>
           <button type="button" id="btnOpenResetModal" class="btn btn-outline-danger py-2 px-3 small fw-semibold">
-            <i class="bi bi-trash3 me-1"></i> Hapus Data
+            <i class="bi bi-funnel me-1"></i> Kelola &amp; Bersihkan Data
           </button>
         </div>
       </div>
@@ -263,11 +270,12 @@
                     <th scope="col">Tombol</th>
                     <th scope="col" class="text-end">Hari Ini</th>
                     <th scope="col" class="text-end">Total</th>
+                    <th scope="col" class="text-end" style="width: 44px;">Aksi</th>
                   </tr>
                 </thead>
                 <tbody id="topButtonsBody">
                   <tr>
-                    <td colspan="4" class="text-center text-muted-custom py-4 small">Memuat data tombol...</td>
+                    <td colspan="5" class="text-center text-muted-custom py-4 small">Memuat data tombol...</td>
                   </tr>
                 </tbody>
               </table>
@@ -280,8 +288,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div>
                 <h2 class="h5 fw-bold mb-0">Log Pengunjung Hari Ini (Real-Time)</h2>
-                <p class="small text-muted-custom mb-0">Urutan terbaru berdasarkan hari, tanggal, jam, menit, detik
-                  &amp; IP</p>
+                <p class="small text-muted-custom mb-0">Klik ikon tempat sampah di baris mana pun untuk hapus log tertentu</p>
               </div>
               <span class="tag-blue-soft" id="logCountBadge">0 Log</span>
             </div>
@@ -294,11 +301,12 @@
                     <th scope="col">Alamat IP</th>
                     <th scope="col">Perangkat / Browser</th>
                     <th scope="col">Asal</th>
+                    <th scope="col" class="text-end">Hapus</th>
                   </tr>
                 </thead>
                 <tbody id="visitLogsBody">
                   <tr>
-                    <td colspan="5" class="text-center text-muted-custom py-4 small">Memuat log pengunjung...</td>
+                    <td colspan="6" class="text-center text-muted-custom py-4 small">Memuat log pengunjung...</td>
                   </tr>
                 </tbody>
               </table>
@@ -312,8 +320,7 @@
             <div class="d-flex justify-content-between align-items-center mb-3">
               <div>
                 <h2 class="h5 fw-bold mb-0">Jejak Aktivitas Per IP Pengunjung (Hari Ini)</h2>
-                <p class="small text-muted-custom mb-0">Riwayat jam masuk dan urutan tombol yang diklik oleh
-                  masing-masing IP</p>
+                <p class="small text-muted-custom mb-0">Bisa hapus per item klik (ikon ✕) atau hapus seluruh jejak 1 IP tertentu</p>
               </div>
               <span class="badge-device" id="ipActivityCountBadge">0 IP</span>
             </div>
@@ -324,11 +331,12 @@
                     <th>IP Pengunjung &amp; Perangkat</th>
                     <th>Jam Berkunjung</th>
                     <th>Tombol yang Diklik (Beserta Jam Klik)</th>
+                    <th class="text-end" style="width: 90px;">Hapus IP</th>
                   </tr>
                 </thead>
                 <tbody id="ipActivityBody">
                   <tr>
-                    <td colspan="3" class="text-center text-muted-custom py-4 small">Memuat jejak aktivitas...</td>
+                    <td colspan="4" class="text-center text-muted-custom py-4 small">Memuat jejak aktivitas...</td>
                   </tr>
                 </tbody>
               </table>
@@ -339,28 +347,53 @@
     </div>
   </main>
 
-  <!-- Dialog Konfirmasi Hapus Data -->
-  <dialog id="resetConfirmDialog" class="border-0 rounded-4 p-0 shadow-lg" style="max-width: 420px; width: 92%;">
+  <!-- Dialog Pembersihan Data Selektif -->
+  <dialog id="resetConfirmDialog" class="border-0 rounded-4 p-0 shadow-lg" style="max-width: 470px; width: 94%;">
     <div class="p-4">
-      <div class="d-flex align-items-center gap-2 text-danger mb-2">
-        <i class="bi bi-exclamation-octagon-fill fs-4"></i>
-        <h2 class="h5 fw-bold mb-0">Hapus Data Statistik?</h2>
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <div class="d-flex align-items-center gap-2 text-primary">
+          <i class="bi bi-magic fs-4"></i>
+          <h2 class="h5 fw-bold mb-0">Bersihkan Data Anomali / Dummy</h2>
+        </div>
+        <button type="button" id="btnCloseResetX" class="btn-close" aria-label="Tutup"></button>
       </div>
       <p class="small text-muted-custom mb-3">
-        Pilih cakupan data yang ingin dihapus permanen dari Firebase Realtime Database:
+        Hapus hanya baris data tertentu yang tidak valid tanpa mengganggu data pengunjung asli:
       </p>
+
+      <div id="cleanStatusAlert" class="alert alert-success py-2 px-3 small d-none mb-3"></div>
+
       <div class="d-grid gap-2 mb-3">
-        <button type="button" id="btnDeleteToday" class="btn btn-outline-danger text-start py-2 px-3">
-          <div class="fw-bold small">Hapus Data Hari Ini Saja</div>
-          <div class="text-muted" style="font-size: 0.75rem;">Menghapus log kunjungan &amp; klik hari ini (untuk bersihkan data tes/dummy hari ini).</div>
+        <button type="button" id="btnCleanNoClickVisits" class="btn btn-outline-primary text-start py-2 px-3">
+          <div class="fw-bold small"><i class="bi bi-person-dash me-1"></i> Hapus Kunjungan Tanpa Klik Tombol (Hari Ini)</div>
+          <div class="text-muted" style="font-size: 0.75rem;">Menghapus log kunjungan IP yang hanya membuka halaman tetapi tidak mengeklik tombol apa pun.</div>
         </button>
+
+        <button type="button" id="btnCleanIncompleteData" class="btn btn-outline-primary text-start py-2 px-3">
+          <div class="fw-bold small"><i class="bi bi-exclamation-circle me-1"></i> Hapus Data Kosong / Jam Tidak Tercatat</div>
+          <div class="text-muted" style="font-size: 0.75rem;">Menghapus entri log kunjungan, log klik, atau tombol yang kosong, IP tidak terdeteksi, atau jamnya <code>-</code>.</div>
+        </button>
+
+        <button type="button" id="btnCleanOrphanClicks" class="btn btn-outline-primary text-start py-2 px-3">
+          <div class="fw-bold small"><i class="bi bi-link-45deg me-1"></i> Hapus Klik Tanpa Log Kunjungan IP (Hari Ini)</div>
+          <div class="text-muted" style="font-size: 0.75rem;">Menghapus log klik tombol yang IP-nya tidak tercatat pada log kunjungan hari ini.</div>
+        </button>
+
+        <hr class="my-1" />
+
+        <button type="button" id="btnDeleteToday" class="btn btn-outline-danger text-start py-2 px-3">
+          <div class="fw-bold small"><i class="bi bi-calendar-x me-1"></i> Hapus Semua Data Hari Ini Saja</div>
+          <div class="text-muted" style="font-size: 0.75rem;">Mengosongkan seluruh log &amp; hitungan tanggal hari ini saja.</div>
+        </button>
+
         <button type="button" id="btnDeleteAll" class="btn btn-danger text-start py-2 px-3">
-          <div class="fw-bold small">Reset Semua Data Statistik</div>
-          <div class="text-white-50" style="font-size: 0.75rem;">Menghapus seluruh riwayat kunjungan, total klik, dan log IP dari awal.</div>
+          <div class="fw-bold small"><i class="bi bi-trash3 me-1"></i> Reset Total Semua Data</div>
+          <div class="text-white-50" style="font-size: 0.75rem;">Menghapus permanen seluruh database statistik dari awal.</div>
         </button>
       </div>
+
       <div class="d-flex justify-content-end">
-        <button type="button" id="btnCancelReset" class="btn btn-light px-3 small fw-semibold">Batal</button>
+        <button type="button" id="btnCancelReset" class="btn btn-light px-3 small fw-semibold">Tutup</button>
       </div>
     </div>
   </dialog>
