@@ -1,317 +1,417 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <title>Kost Griya Bangun Widadi</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Favicons -->
-  <link href="images/favicon.png" rel="icon">
-  <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self' https://*.firebasedatabase.app https://api.ipify.org; frame-src https://www.google.com;" />
+  <title>Kost Griya Bangun Widadi — Kost Putri Nyaman di Purwokerto</title>
+  <meta name="description"
+    content="Kost putri nyaman dan strategis di tengah kota Purwokerto, tepat di belakang Gedung FEB UIN SAIZU." />
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900" />
-  <link rel="stylesheet" href="fonts/icomoon/style.css" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/magnific-popup.css" />
-  <link rel="stylesheet" href="css/jquery-ui.css" />
-  <link rel="stylesheet" href="css/owl.carousel.min.css" />
-  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+  <!-- Favicons & Logo Asli -->
+  <link href="images/favicon.png" rel="icon" />
+  <link href="images/apple-touch-icon.png" rel="apple-touch-icon" />
 
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css" />
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/aos.css" />
-  <link rel="stylesheet" href="css/jquery.fancybox.min.css" />
+  <!-- Bootstrap 5.3 & Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    crossorigin="anonymous" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Fancybox untuk Lightbox Galeri -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    crossorigin="anonymous" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom-gbw.css" />
 </head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  <div id="overlayer"></div>
-  <div class="loader">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
 
-  <div class="site-wrap">
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close js-menu-toggle"></span>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="95">
+  <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
+  <!-- Navbar -->
+  <header>
+    <nav id="mainNav" class="navbar navbar-expand-lg site-navbar fixed-top py-3" aria-label="Navigasi Utama">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold m-0 brand-title" href="index.html">
+          <img src="images/favicon.png" alt="Logo Kost Griya Bangun Widadi" width="38" height="38" class="brand-logo" />
+          <span>Kost Griya Bangun Widadi</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+          aria-controls="navbarMenu" aria-expanded="false" aria-label="Buka menu navigasi">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto gap-lg-1 my-3 my-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#home-section" data-track="nav_home"
+                data-track-group="Navigasi" data-track-label="Menu: Home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about-section" data-track="nav_tentang"
+                data-track-group="Navigasi" data-track-label="Menu: Tentang Kami">Tentang Kami</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pricing-section" data-track="nav_harga"
+                data-track-group="Navigasi" data-track-label="Menu: Harga">Harga</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq-section" data-track="nav_faq"
+                data-track-group="Navigasi" data-track-label="Menu: FAQ">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects-section" data-track="nav_galeri"
+                data-track-group="Navigasi" data-track-label="Menu: Galeri">Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact-section" data-track="nav_kontak"
+                data-track-group="Navigasi" data-track-label="Menu: Kontak">Kontak</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-2">
+            <a href="https://www.instagram.com/kostgbw/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-soft px-3 py-2" aria-label="Instagram Kost GBW" data-track="ig_navbar"
+              data-track-group="Sosial Media" data-track-label="IG: Ikon Menu Navigasi Atas">
+              <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?"
+              target="_blank" rel="noopener noreferrer" class="btn btn-blue py-2 px-3" data-track="wa_navbar"
+              data-track-group="WhatsApp" data-track-label="WA: Menu Navigasi Atas">
+              <i class="bi bi-whatsapp me-1" aria-hidden="true"></i> Tanya Kamar
+            </a>
+          </div>
         </div>
       </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    <!-- .site-mobile-menu -->
+    </nav>
+  </header>
 
-    <div class="site-navbar-wrap">
-      <div class="site-navbar-top">
-        <div class="container py-3">
-          <div class="row align-items-center">
-            <div class="col-6">
-              <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?" target="_blank" class="p-2 pl-0"><span
-                  class="icon-whatsapp"></span></a>
-              <a href="https://www.instagram.com/kostgbw/" class="p-2 pl-0"><span class="icon-instagram"></span></a>
-              <a href="https://goo.gl/maps/uqEDyTjmJWsB347t9" target="_blank" class="p-2 pl-0"><span
-                  class="icon-map2"></span></a>
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section id="home-section" class="hero-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="location-pill">
+              <i class="bi bi-geo-alt-fill" aria-hidden="true"></i>
+              <span>Kost Putri • Purwokerto Utara</span>
             </div>
-            <div class="col-6">
-              <div class="d-flex ml-auto">
-                <a href="mailto:kostgbw@gmail.com" class="d-flex align-items-center ml-auto mr-4">
-                  <span class="icon-envelope mr-2"></span>
-                  <span class="d-none d-md-inline-block">kostgbw@gmail.com</span>
+            <h1 class="display-5 fw-bold mb-3">
+              Tempat nyaman untuk tinggal, belajar, dan beristirahat.
+            </h1>
+            <p class="lead mb-4 text-muted-custom">
+              Kost Griya Bangun Widadi menghadirkan lingkungan hunian yang tenang, bersih, dan aman di tengah kota
+              Purwokerto — tepat di belakang Gedung FEB UIN SAIZU.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <a href="#pricing-section" class="btn btn-blue" data-track="hero_lihat_paket"
+                data-track-group="Hero & Peta" data-track-label="Hero: Lihat Paket Kost">
+                Lihat Paket Kost
+              </a>
+              <a href="https://goo.gl/maps/uqEDyTjmJWsB347t9" target="_blank" rel="noopener noreferrer"
+                class="btn btn-soft" data-track="hero_maps" data-track-group="Hero & Peta"
+                data-track-label="Hero: Petunjuk Lokasi Maps">
+                <i class="bi bi-map me-1 text-blue-main" aria-hidden="true"></i> Petunjuk Lokasi
+              </a>
+            </div>
+            <p class="small mb-0 text-muted-custom">
+              <i class="bi bi-shield-check me-1 text-blue-main" aria-hidden="true"></i>
+              Semua kamar dilengkapi kamar mandi dalam, meja kerja, serta WiFi hingga 10 Mbps/user.
+            </p>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-photo-wrap">
+              <img src="images/hero_bg_1.jpg" alt="Bangunan Kost Griya Bangun Widadi di Purwokerto Utara" width="800"
+                height="533" />
+              <div class="hero-caption-badge">
+                <div>
+                  <div class="fw-bold small">Belakang Gedung FEB UIN SAIZU</div>
+                  <div class="small text-muted-custom">JL. Kebon Bayem III, Purwanegara</div>
+                </div>
+                <span class="tag-blue-soft">Putri</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tentang Kami (Foto Portrait Proporsional) -->
+    <section id="about-section" class="about-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5">
+            <div class="portrait-frame">
+              <img src="images/about_2.jpg" alt="Suasana dan lingkungan Kost Griya Bangun Widadi" width="600"
+                height="750" loading="lazy" />
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <span class="fw-bold small text-blue-main">Tentang Kami</span>
+            <h2 class="h1 fw-bold mt-1 mb-3">Hunian Strategis &amp; Tenang di Tengah Kota Purwokerto</h2>
+            <p class="text-muted-custom">
+              Kost Griya Bangun Widadi merupakan hunian kost putri yang nyaman. Lokasi kost sangat strategis terletak di
+              tengah kota Purwokerto, tepatnya di <strong>JL. Kebon Bayem III, Karanganjing, Purwanegara, Kec.
+                Purwokerto Utara (Belakang Gedung FEB UIN SAIZU)</strong>.
+            </p>
+            <p class="fw-semibold mb-3">Lokasi ini sangat dekat dengan berbagai fasilitas umum:</p>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div class="amenity-chip">
+                  <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+                  <span>Kampus &amp; Sekolah</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="amenity-chip">
+                  <i class="bi bi-train-front-fill" aria-hidden="true"></i>
+                  <span>Stasiun Purwokerto</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="amenity-chip">
+                  <i class="bi bi-hospital-fill" aria-hidden="true"></i>
+                  <span>Rumah Sakit</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="amenity-chip">
+                  <i class="bi bi-bag-fill" aria-hidden="true"></i>
+                  <span>Pusat Perbelanjaan</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="amenity-chip">
+                  <i class="bi bi-film" aria-hidden="true"></i>
+                  <span>Bioskop</span>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="amenity-chip">
+                  <i class="bi bi-geo-fill" aria-hidden="true"></i>
+                  <span>Alun-alun Kota</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Paket Kost (Double Bed sebagai Paling Laris) -->
+    <section id="pricing-section" class="pricing-section">
+      <div class="container">
+        <div class="text-center mx-auto mb-5 section-header-narrow">
+          <span class="fw-bold small text-blue-main">Harga &amp; Pilihan Kamar</span>
+          <h2 class="h1 fw-bold mt-1 mb-2">Paket Kost</h2>
+          <p class="text-muted-custom">Pilihan paket kost nyaman untukmu dengan pembayaran per 3 bulan.</p>
+        </div>
+
+        <div class="row g-4 align-items-stretch pt-2">
+          <!-- Single Bed -->
+          <div class="col-lg-4">
+            <div class="plan-card">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="h4 fw-bold m-0">Single Bed</h3>
+                <span class="tag-blue-soft">1 Orang</span>
+              </div>
+              <p class="small mb-3 text-muted-custom">Kamar privat untuk fokus belajar dan istirahat sendiri.</p>
+
+              <div class="my-2 tabular-nums">
+                <span class="fs-5 fw-semibold text-muted-custom">Rp</span>
+                <span class="display-6 fw-bold">2.1jt</span>
+                <span class="text-muted-custom">/ 3 Bulan</span>
+              </div>
+              <div class="mb-4 tabular-nums">
+                <span class="price-monthly-pill">* Harga per bulan Rp 700k</span>
+              </div>
+
+              <ul class="list-unstyled check-list d-flex flex-column gap-2 mb-4">
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Max 1 user</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Kasur</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Kamar Mandi Dalam</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Tempat Pakaian</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Meja Kerja &amp; Kursi</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>WiFi</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Tempat Sampah &amp; Keset</li>
+              </ul>
+
+              <div class="mt-auto">
+                <a href="https://mamikos.com/room/kost-kabupaten-banyumas-kost-putri-murah-kost-griya-bangun-widadi-single-bed-purwokerto-utara-banyumas-1#/"
+                  target="_blank" rel="noopener noreferrer" class="btn btn-soft w-100" data-track="pesan_single_bed"
+                  data-track-group="Paket Kamar" data-track-label="Pesan: Single Bed (2.1jt/3bln)">
+                  Pesan Sekarang
                 </a>
-                <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?" target="_blank"
-                  class="d-flex align-items-center">
-                  <span class="icon-whatsapp mr-2"></span>
-                  <span class="d-none d-md-inline-block">WhatsApp</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Double Bed (Paling Laris) -->
+          <div class="col-lg-4">
+            <div class="plan-card plan-card-bestseller">
+              <div class="bestseller-ribbon">
+                <i class="bi bi-star-fill me-1" aria-hidden="true"></i> Paling Laris
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-2 mt-1">
+                <h3 class="h4 fw-bold m-0">Double Bed</h3>
+                <span class="tag-blue-soft">2 Orang</span>
+              </div>
+              <p class="small mb-3 text-muted-custom">Pilihan favorit mahasiswi untuk berbagi kamar berdua dengan teman.
+              </p>
+
+              <div class="my-2 tabular-nums">
+                <span class="fs-5 fw-semibold text-muted-custom">Rp</span>
+                <span class="display-6 fw-bold text-blue-main">3.3jt</span>
+                <span class="text-muted-custom">/ 3 Bulan</span>
+              </div>
+              <div class="mb-4 tabular-nums">
+                <span class="price-monthly-pill">* Harga per bulan Rp 1.1jt</span>
+              </div>
+
+              <ul class="list-unstyled check-list d-flex flex-column gap-2 mb-4">
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Max 2 users</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>2 Kasur</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Kamar Mandi Dalam</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Tempat Pakaian</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Meja Kerja &amp; Kursi</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>WiFi</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Tempat Sampah &amp; Keset</li>
+              </ul>
+
+              <div class="mt-auto">
+                <a href="https://mamikos.com/room/kost-kabupaten-banyumas-kost-putri-eksklusif-kost-griya-bangun-widadi-double-bed-purwokerto-utara-banyumas#/"
+                  target="_blank" rel="noopener noreferrer" class="btn btn-blue w-100" data-track="pesan_double_bed"
+                  data-track-group="Paket Kamar" data-track-label="Pesan: Double Bed (3.3jt/3bln)">
+                  Pesan Sekarang
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Triple Bed -->
+          <div class="col-lg-4">
+            <div class="plan-card">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h3 class="h4 fw-bold m-0">Triple Bed</h3>
+                <span class="tag-blue-soft">3 Orang</span>
+              </div>
+              <p class="small mb-3 text-muted-custom">Solusi paling hemat untuk tinggal bertiga bersama sahabat kuliah.
+              </p>
+
+              <div class="my-2 tabular-nums">
+                <span class="fs-5 fw-semibold text-muted-custom">Rp</span>
+                <span class="display-6 fw-bold">4.350k</span>
+                <span class="text-muted-custom">/ 3 Bulan</span>
+              </div>
+              <div class="mb-4 tabular-nums">
+                <span class="price-monthly-pill">* Harga per bulan Rp 1.450k</span>
+              </div>
+
+              <ul class="list-unstyled check-list d-flex flex-column gap-2 mb-4">
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Max 3 users</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>3 Kasur</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Kamar Mandi Dalam</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Tempat Pakaian</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Meja Kerja &amp; Kursi</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>WiFi</li>
+                <li><i class="bi bi-check-circle-fill" aria-hidden="true"></i>Tempat Sampah &amp; Keset</li>
+              </ul>
+
+              <div class="mt-auto">
+                <a href="https://mamikos.com/room/kost-kabupaten-banyumas-kost-putri-eksklusif-kost-griya-bangun-widadi-triple-bed-purwokerto-utara-banyumas-1#/"
+                  target="_blank" rel="noopener noreferrer" class="btn btn-soft w-100" data-track="pesan_triple_bed"
+                  data-track-group="Paket Kamar" data-track-label="Pesan: Triple Bed (4.35jt/3bln)">
+                  Pesan Sekarang
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="site-navbar site-navbar-target js-sticky-header">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-2">
-              <h1 class="my-0 site-logo"><a href="index.html">Kost GBW</a></h1>
-            </div>
-            <div class="col-10">
-              <nav class="site-navigation text-right" role="navigation">
-                <div class="container">
-                  <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3">
-                    <a href="#" class="site-menu-toggle js-menu-toggle text-white"><span
-                        class="icon-menu h3"></span></a>
-                  </div>
-
-                  <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
-                    <li><a href="#home-section" class="nav-link">Home</a></li>
-                    <li><a href="#about-section" class="nav-link">Tentang Kami</a></li>
-                    <li><a href="#pricing-section" class="nav-link">Harga</a></li>
-                    <li><a href="#faq-section" class="nav-link">FAQ</a></li>
-                    <li><a href="#projects-section" class="nav-link">Galeri</a></li>
-                    <li><a href="#contact-section" class="nav-link">Kontak</a></li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_1.jpg)" data-aos="fade"
-      data-stellar-background-ratio="0.5" id="home-section">
-      <div class="container">
-        <div class="row align-items-center text-center justify-content-center">
-          <div class="col-md-8">
-            <h1 class="text-uppercase">Griya Bangun Widadi</h1>
-            <span class="sub-text mb-3 d-block"><em>Tempat Nyaman Untuk Tinggal, Belajar dan Beristirahat.</em></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section about-section" id="about-section">
-      <div class="container">
-        <div class="row align-items-center mb-5 pb-5">
-          <div class="col-lg-7 img-years mb-5 mb-lg-0">
-            <img src="images/hero_bg_1.jpg" alt="Image" class="img-fluid" />
-          </div>
-          <div class="col-lg-4 ml-auto">
-            <h3 class="mb-4">Tentang Kami</h3>
-            <br class="mb-4">
-            Kost Griya Bangun Widadi merupakan hunian kost putri yang nyaman. </br>Lokasi kost sangat strategis terletak
-            di tengah kota Purwokerto, tepatnya di JL. Kebon Bayem III, Karanganjing, Purwanegara, Kec. Purwokerto Utara
-            (Belakang Gedung FEB UIN SAIZU).
-            </p>
-            <p>
-              Lokasi ini sangat dekat dengan fasilitas umum seperti :
-            <ul>
-              <li>Kampus</li>
-              <li>Sekolah</li>
-              <li>Stasiun</li>
-              <li>Rumah Sakit</li>
-              <li>Pusat Perbelanjaan</li>
-              <li>Bioskop</li>
-              <li>Alun-alun Kota</li>
-            </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section" id="pricing-section">
+    <!-- FAQ Section -->
+    <section id="faq-section" class="faq-section">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-7 text-center">
-            <span class="sub-title">Harga</span>
-            <h2 class="font-weight-bold text-black">Paket Kost</h2>
-            <p class="mb-5">Pilihan paket kost nyaman untuk mu.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 pricing">
-            <div class="border p-5 text-center rounded">
-              <h3>Single Bed</h3>
-              <div class="price mb-3"><sup class="currency">Rp.</sup><span class="number">2.1jt</span> <span
-                  class="per">/3 Bulan</span></div>
-              <p class="text-muted mb-4">* Harga perbulan Rp.700k</p>
-              <ul class="list-unstyled ul-check text-left success mb-5">
-                <li>Max 1 user</li>
-                <li>Kasur</li>
-                <li>Kamar Mandi Dalam</li>
-                <li>Tempat Pakaian</li>
-                <li>Meja Kerja</li>
-                <li>Kursi</li>
-                <li>Wifi</li>
-                <li>Tempat Sampah</li>
-                <li>Keset</li>
-              </ul>
-              <p><a
-                  href="https://mamikos.com/room/kost-kabupaten-banyumas-kost-putri-murah-kost-griya-bangun-widadi-single-bed-purwokerto-utara-banyumas-1#/"
-                  class="btn btn-lg btn-primary rounded-0 btn-block">Pesan Sekarang</a></p>
+          <div class="col-lg-8">
+            <div class="text-center mb-5">
+              <span class="fw-bold small text-blue-main">Tanyakan Kepada Kami</span>
+              <h2 class="h1 fw-bold mt-1 mb-2">Pertanyaan yang Sering Diajukan</h2>
+              <p class="text-muted-custom">Informasi lengkap seputar lokasi, fasilitas umum, dan fasilitas kamar.</p>
             </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 pricing">
-            <div class="border p-5 text-center rounded">
-              <h3>Double Bed</h3>
-              <div class="price mb-3"><sup class="currency">Rp.</sup><span class="number">3.3jt</span> <span
-                  class="per">/3 Bulan</span></div>
-              <p class="text-muted mb-4">* Harga perbulan Rp.1.1jt</p>
-              <ul class="list-unstyled ul-check text-left success mb-5">
-                <li>Max 2 users</li>
-                <li>2 Kasur</li>
-                <li>Kamar Mandi Dalam</li>
-                <li>Tempat Pakaian</li>
-                <li>Meja Kerja</li>
-                <li>Kursi</li>
-                <li>Wifi</li>
-                <li>Tempat Sampah</li>
-                <li>Keset</li>
-              </ul>
-              <p><a
-                  href="https://mamikos.com/room/kost-kabupaten-banyumas-kost-putri-eksklusif-kost-griya-bangun-widadi-double-bed-purwokerto-utara-banyumas#/"
-                  class="btn btn-lg btn-primary rounded-0 btn-block">Pesan Sekarang</a></p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 pricing">
-            <div class="border p-5 text-center rounded">
-              <h3>Triple Bed</h3>
-              <div class="price mb-3"><sup class="currency">Rp.</sup><span class="number">4.5jt</span> <span
-                  class="per">/3 Bulan</span></div>
-              <p class="text-muted mb-4">* Harga perbulan Rp.1.5jt</p>
-              <ul class="list-unstyled ul-check text-left success mb-5">
-                <li>Max 3 users</li>
-                <li>3 Kasur</li>
-                <li>Kamar Mandi Dalam</li>
-                <li>Tempat Pakaian</li>
-                <li>Meja Kerja</li>
-                <li>Kursi</li>
-                <li>Wifi</li>
-                <li>Tempat Sampah</li>
-                <li>Keset</li>
-              </ul>
-              <p><a
-                  href="https://mamikos.com/room/kost-kabupaten-banyumas-kost-putri-eksklusif-kost-griya-bangun-widadi-triple-bed-purwokerto-utara-banyumas-1#/"
-                  class="btn btn-lg btn-primary rounded-0 btn-block">Pesan Sekarang</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="site-section" id="faq-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <img src="images/about_2.jpg" alt="Image" class="img-fluid" />
-          </div>
-
-          <div class="col-lg-6 ml-auto pl-lg-5">
-            <span class="sub-title">Tanyakan Kepada Kami, Dengan Senang Hati Kami Menjawab</span>
-            <h2 class="font-weight-bold text-black mb-5">Pertanyaan yang Sering Diajukan</h2>
-            <div class="accordion" id="accordionExample">
+            <div class="accordion" id="faqAccordion">
               <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                    aria-controls="collapseOne"> Dimana lokasi kost Griya Bangun Widadi ?</a>
-                </h2>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                  data-parent="#accordionExample">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne" data-track="faq_lokasi" data-track-group="FAQ"
+                    data-track-label="FAQ 1: Dimana Lokasi Kost">
+                    Dimana lokasi kost Griya Bangun Widadi?
+                  </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    <p>
-                      Lokasi Kost Griya Bangun Widadi sangat strategis terletak di tengah kota Purwokerto, tepatnya di
-                      JL. Kebon Bayem III, Karanganjing, Purwanegara, Kec. Purwokerto Utara.
-                    </p>
-                    <p>
-                      Lokasi ini sangat dekat dengan fasilitas umum seperti :
-                    <ul>
-                      <li>Kampus</li>
-                      <li>Sekolah</li>
+                    <p>Lokasi Kost Griya Bangun Widadi sangat strategis terletak di tengah kota Purwokerto, tepatnya di
+                      <strong>JL. Kebon Bayem III, Karanganjing, Purwanegara, Kec. Purwokerto Utara</strong>.</p>
+                    <p class="mb-2">Lokasi ini sangat dekat dengan fasilitas umum seperti:</p>
+                    <ul class="mb-0">
+                      <li>Kampus &amp; Sekolah</li>
                       <li>Stasiun</li>
                       <li>Rumah Sakit</li>
                       <li>Pusat Perbelanjaan</li>
-                      <li>Bioskop</li>
-                      <li>Alun-alun Kota</li>
+                      <li>Bioskop &amp; Alun-alun Kota</li>
                     </ul>
-                    </p>
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                    aria-controls="collapseTwo"> Fasilitas apa saja yang ada pada kostan ? </a>
-                </h2>
-
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                    data-track="faq_fasilitas_kost" data-track-group="FAQ"
+                    data-track-label="FAQ 2: Fasilitas Umum Kost">
+                    Fasilitas apa saja yang ada pada kostan?
+                  </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    <p>
-                      Fasilitas yang ada pada kost diantaranya :
-                    <ul>
+                    <p class="mb-2">Fasilitas yang ada pada kost di antaranya:</p>
+                    <ul class="mb-0">
                       <li>Dapur</li>
                       <li>CCTV</li>
                       <li>Garasi</li>
                       <li>Kamar Mandi Luar</li>
                       <li>Tempat Jemur Pakaian</li>
-                      <li>Wifi Up To 10Mbps / User</li>
+                      <li>WiFi Up To 10Mbps / User</li>
                       <li>Bebas Biaya Sampah</li>
-                      <li>Bebas Biyaya Kebersihan</li>
+                      <li>Bebas Biaya Kebersihan</li>
                     </ul>
-                    </p>
                   </div>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="mb-0 rounded mb-2">
-                  <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="false" aria-controls="collapseThree"> Fasilitas apa saja yang ada pada kamar kost ?
-                  </a>
-                </h2>
-
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                    data-track="faq_fasilitas_kamar" data-track-group="FAQ"
+                    data-track-label="FAQ 3: Fasilitas Kamar Kost">
+                    Fasilitas apa saja yang ada pada kamar kost?
+                  </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                   <div class="accordion-body">
-                    <p>
-                      Fasilitas yang ada pada kamar kost diantaranya :
-                    <ul>
+                    <p class="mb-2">Fasilitas yang ada pada kamar kost di antaranya:</p>
+                    <ul class="mb-0">
                       <li>Kasur</li>
                       <li>Kamar Mandi Dalam</li>
                       <li>Tempat Pakaian</li>
-                      <li>Meja Kerja</li>
-                      <li>Kursi</li>
+                      <li>Meja Kerja &amp; Kursi</li>
                       <li>Tempat Sampah</li>
-                      <li>Keset</li>
-                      <li>Kapstok</li>
+                      <li>Keset &amp; Kapstok</li>
                     </ul>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -319,155 +419,262 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="site-section" id="projects-section">
+    <!-- Galeri Section -->
+    <section id="projects-section" class="gallery-section">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7 text-center">
-            <span class="sub-title">Kost Griya Bangun Widadi</span>
-            <h2 class="font-weight-bold text-black">Galeri</h2>
-            <p class="mb-5">Gambar Bangunan & Kamar Kost Griya Bangun Widadi.</p>
-          </div>
+        <div class="text-center mb-4">
+          <span class="fw-bold small text-blue-main">Kost Griya Bangun Widadi</span>
+          <h2 class="h1 fw-bold mt-1 mb-2">Galeri Foto</h2>
+          <p class="text-muted-custom">Klik foto mana saja untuk melihat detail bangunan dan kamar dalam ukuran penuh.
+          </p>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/1.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/1.jpg" alt="Image" class="img-fluid" />
+
+        <!-- Filter Kategori -->
+        <div class="d-flex justify-content-center gap-2 mb-4 flex-wrap" role="group" aria-label="Filter Galeri">
+          <button type="button" class="filter-tab active" data-filter="all" data-track="filter_semua"
+            data-track-group="Galeri Foto" data-track-label="Filter Galeri: Semua Foto">Semua Foto</button>
+          <button type="button" class="filter-tab" data-filter="interior" data-track="filter_interior"
+            data-track-group="Galeri Foto" data-track-label="Filter Galeri: Interior">Interior</button>
+          <button type="button" class="filter-tab" data-filter="eksterior" data-track="filter_eksterior"
+            data-track-group="Galeri Foto" data-track-label="Filter Galeri: Eksterior">Eksterior</button>
+        </div>
+
+        <div class="row g-4" id="galleryGrid">
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="eksterior">
+            <a href="images/galeri/1.jpg" class="gallery-card" data-fancybox="gallery"
+              data-caption="Bangunan Kost — Eksterior" data-track="galeri_1_bangunan" data-track-group="Galeri Foto"
+              data-track-label="Foto 1: Bangunan Kost (Eksterior)">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/1.jpg" alt="Bangunan Kost" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Bangunan Kost</h3>
+                <span class="tag-blue-soft">Eksterior</span>
+              </div>
             </a>
-            <h3 class="mb-0"><a href="#">Bangunan Kost</a></h3>
-            <span class="text-muted">Eksterior</span>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/2.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/2.jpg" alt="Image" class="img-fluid" />
-            </a>
-            <h3 class="mb-0"><a href="#">Kamar Single Bed</a></h3>
-            <span class="text-muted">Interior</span>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/3.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/3.jpg" alt="Image" class="img-fluid" />
-            </a>
-            <h3 class="mb-0"><a href="#">Kamar Double Bed</a></h3>
-            <span class="text-muted">Interior</span>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/4.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/4.jpg" alt="Image" class="img-fluid" />
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/2.jpg" class="gallery-card" data-fancybox="gallery"
+              data-caption="Kamar Single Bed — Interior" data-track="galeri_2_single" data-track-group="Galeri Foto"
+              data-track-label="Foto 2: Kamar Single Bed">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/2.jpg" alt="Kamar Single Bed" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Kamar Single Bed</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
             </a>
-            <h3 class="mb-0"><a href="#">Kamar Triple Bed</a></h3>
-            <span class="text-muted">Interior</span>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/5.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/5.jpg" alt="Image" class="img-fluid" />
-            </a>
-            <h3 class="mb-0"><a href="#">Kamar Mandi</a></h3>
-            <span class="text-muted">Interior</span>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/6.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/6.jpg" alt="Image" class="img-fluid" />
-            </a>
-            <h3 class="mb-0"><a href="#">Dapur</a></h3>
-            <span class="text-muted">Interior</span>
           </div>
 
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/7.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/7.jpg" alt="Image" class="img-fluid" />
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/3.jpg" class="gallery-card" data-fancybox="gallery"
+              data-caption="Kamar Double Bed — Interior" data-track="galeri_3_double" data-track-group="Galeri Foto"
+              data-track-label="Foto 3: Kamar Double Bed">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/3.jpg" alt="Kamar Double Bed" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Kamar Double Bed</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
             </a>
-            <h3 class="mb-0"><a href="#">Garasi</a></h3>
-            <span class="text-muted">Interior</span>
           </div>
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/8.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/8.jpg" alt="Image" class="img-fluid" />
+
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/4.jpg" class="gallery-card" data-fancybox="gallery"
+              data-caption="Kamar Triple Bed — Interior" data-track="galeri_4_triple" data-track-group="Galeri Foto"
+              data-track-label="Foto 4: Kamar Triple Bed">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/4.jpg" alt="Kamar Triple Bed" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Kamar Triple Bed</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
             </a>
-            <h3 class="mb-0"><a href="#">Jemuran</a></h3>
-            <span class="text-muted">Interior</span>
           </div>
-          <div class="col-lg-4 col-md-6 mb-4 project-entry">
-            <a href="images/galeri/9.jpg" class="d-block figure" data-fancybox="gallery">
-              <img src="images/thumbnail/9.jpg" alt="Image" class="img-fluid" />
+
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/5.jpg" class="gallery-card" data-fancybox="gallery"
+              data-caption="Kamar Mandi — Interior" data-track="galeri_5_km" data-track-group="Galeri Foto"
+              data-track-label="Foto 5: Kamar Mandi Dalam">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/5.jpg" alt="Kamar Mandi" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Kamar Mandi</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
             </a>
-            <h3 class="mb-0"><a href="#">Pemandangan</a></h3>
-            <span class="text-muted">Eksterior</span>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/6.jpg" class="gallery-card" data-fancybox="gallery" data-caption="Dapur — Interior"
+              data-track="galeri_6_dapur" data-track-group="Galeri Foto" data-track-label="Foto 6: Dapur Bersama">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/6.jpg" alt="Dapur" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Dapur</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/7.jpg" class="gallery-card" data-fancybox="gallery" data-caption="Garasi — Interior"
+              data-track="galeri_7_garasi" data-track-group="Galeri Foto" data-track-label="Foto 7: Garasi Motor">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/7.jpg" alt="Garasi" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Garasi</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="interior">
+            <a href="images/galeri/8.jpg" class="gallery-card" data-fancybox="gallery" data-caption="Jemuran — Interior"
+              data-track="galeri_8_jemuran" data-track-group="Galeri Foto" data-track-label="Foto 8: Area Jemuran">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/8.jpg" alt="Jemuran" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Jemuran</h3>
+                <span class="tag-blue-soft">Interior</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-md-6 gallery-item-col" data-category="eksterior">
+            <a href="images/galeri/9.jpg" class="gallery-card" data-fancybox="gallery"
+              data-caption="Pemandangan — Eksterior" data-track="galeri_9_pemandangan" data-track-group="Galeri Foto"
+              data-track-label="Foto 9: Pemandangan Sekitar">
+              <div class="gallery-img-box">
+                <img src="images/thumbnail/9.jpg" alt="Pemandangan" width="400" height="300" loading="lazy" />
+              </div>
+              <div class="p-3 d-flex justify-content-between align-items-center">
+                <h3 class="h6 fw-bold m-0">Pemandangan</h3>
+                <span class="tag-blue-soft">Eksterior</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="site-section bg-light" id="contact-section">
+    <!-- Kontak Section (Dengan Peta Full Height di Desktop) -->
+    <section id="contact-section" class="contact-section">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-7 text-center">
-            <span class="sub-title">Hubungi Kami</span>
-            <h2 class="font-weight-bold text-black">Kontak</h2>
-            <p class="mb-5">Hubungi kami pada kontak dibawah. Kami ada di whatsapp, instagram, facebook, tiktok</p>
-          </div>
+        <div class="text-center mb-5">
+          <span class="fw-bold small text-blue-main">Hubungi Kami</span>
+          <h2 class="h1 fw-bold mt-1 mb-2">Kontak &amp; Alamat</h2>
+          <p class="text-muted-custom">Hubungi kami melalui WhatsApp, Instagram, atau Facebook untuk survei kamar.</p>
         </div>
-        <div class="row">
-          <div class="col-sm-8">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d555.1256103684048!2d109.23009830159926!3d-7.411384942613394!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655ff6488d42b1%3A0xc257dc77caad491e!2sKost%20Griya%20Bangun%20Widadi!5e0!3m2!1sid!2sde!4v1636300769045!5m2!1sid!2sde"
-              width="100%" height="420" frameborder="0" style="border: 0" allowfullscreen></iframe>
+
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="map-card">
+              <iframe title="Peta Lokasi Kost Griya Bangun Widadi" class="map-embed"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d555.1256103684048!2d109.23009830159926!3d-7.411384942613394!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655ff6488d42b1%3A0xc257dc77caad491e!2sKost%20Griya%20Bangun%20Widadi!5e0!3m2!1sid!2sde!4v1636300769045!5m2!1sid!2sde"
+                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
 
-          <div class="col-sm-4">
-            <h3 class="mt-0">Kost Griya Bangun Widadi</h3>
-            <hr align="left" width="50%" />
-            <h4 class="pt-2 mt-0">Alamat</h4>
-            <i class="icon-location2 mt-0"></i>
-            <a href="https://www.google.com/maps/dir//Kost+Griya+Bangun+Widadi+Kb.+Bayem+III+Karanganjing,+Purwanegara+Kec.+Purwokerto+Utara,+Kabupaten+Banyumas,+Jawa+Tengah+53127,+Indonesia/@-2.8968717,101.8331522,6z/data=!4m8!4m7!1m0!1m5!1m1!1s0x2e655ff6488d42b1:0xc257dc77caad491e!2m2!1d109.2300362!2d-7.4115687"
-              target="_blank">JL. Kebon Bayem III, Karanganjing, Purwanegara, Kec. Purwokerto Utara, Kabupaten Banyumas,
-              Jawa Tengah</a><br />
-            <h4 class="pt-2">Kontak</h4>
-            <i class="icon-whatsapp mr-2"></i> <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?"
-              target="_blank"> WhatsApp </a><br />
-            <i class="icon-instagram mr-2"></i><a href="https://www.instagram.com/kostgbw/" target="_blank"> kostgbw
-            </a><br />
-            <i class="icon-facebook mr-2"></i><a href="https://www.facebook.com/profile.php?id=100074360732573"
-              target="_blank"> kostgbw </a><br />
-            <h4 class="pt-2">Email</h4>
-            <i class="icon-envelope mr-2"></i> <a href="mailto:kostgbw@gmail.com">kostgbw@gmail.com</a><br />
+          <div class="col-lg-5">
+            <div class="contact-box d-flex flex-column justify-content-between">
+              <div>
+                <h3 class="h4 fw-bold mb-3">Kost Griya Bangun Widadi</h3>
+
+                <div class="mb-4">
+                  <div class="fw-bold small mb-1 text-blue-main">Alamat Lengkap</div>
+                  <a href="https://www.google.com/maps/dir//Kost+Griya+Bangun+Widadi+Kb.+Bayem+III+Karanganjing,+Purwanegara+Kec.+Purwokerto+Utara,+Kabupaten+Banyumas,+Jawa+Tengah+53127,+Indonesia/@-2.8968717,101.8331522,6z/data=!4m8!4m7!1m0!1m5!1m1!1s0x2e655ff6488d42b1:0xc257dc77caad491e!2m2!1d109.2300362!2d-7.4115687"
+                    target="_blank" rel="noopener noreferrer"
+                    class="d-flex gap-2 text-decoration-none text-muted-custom" data-track="alamat_directions"
+                    data-track-group="Hero & Peta" data-track-label="Kontak: Klik Alamat Rute Maps">
+                    <i class="bi bi-geo-alt-fill mt-1 text-blue-main" aria-hidden="true"></i>
+                    <span>JL. Kebon Bayem III, Karanganjing, Purwanegara, Kec. Purwokerto Utara, Kabupaten Banyumas,
+                      Jawa Tengah</span>
+                  </a>
+                </div>
+
+                <div class="mb-4">
+                  <div class="fw-bold small mb-2 text-blue-main">Saluran Komunikasi</div>
+                  <div class="d-flex flex-column gap-2">
+                    <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?"
+                      target="_blank" rel="noopener noreferrer" class="social-row" data-track="kontak_wa_list"
+                      data-track-group="WhatsApp" data-track-label="WA: Daftar Kontak (Tengah)">
+                      <i class="bi bi-whatsapp" aria-hidden="true"></i>
+                      <span>WhatsApp Pengelola</span>
+                    </a>
+                    <a href="https://www.instagram.com/kostgbw/" target="_blank" rel="noopener noreferrer"
+                      class="social-row" data-track="kontak_ig_list" data-track-group="Sosial Media"
+                      data-track-label="IG: Daftar Kontak (@kostgbw)">
+                      <i class="bi bi-instagram" aria-hidden="true"></i>
+                      <span>Instagram @kostgbw</span>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=100074360732573" target="_blank"
+                      rel="noopener noreferrer" class="social-row" data-track="kontak_fb_list"
+                      data-track-group="Sosial Media" data-track-label="FB: Daftar Kontak (kostgbw)">
+                      <i class="bi bi-facebook" aria-hidden="true"></i>
+                      <span>Facebook kostgbw</span>
+                    </a>
+                    <a href="mailto:kostgbw@gmail.com" class="social-row" data-track="kontak_email_list"
+                      data-track-group="Sosial Media" data-track-label="Email: kostgbw@gmail.com">
+                      <i class="bi bi-envelope" aria-hidden="true"></i>
+                      <span>kostgbw@gmail.com</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?"
+                target="_blank" rel="noopener noreferrer" class="btn btn-blue w-100 text-center"
+                data-track="kontak_wa_cta" data-track-group="WhatsApp" data-track-label="WA: Tombol Biru Besar Kontak">
+                <i class="bi bi-whatsapp me-2" aria-hidden="true"></i>Tanya Ketersediaan Kamar
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <footer class="site-footer border-top">
-      <div class="container">
-        <div class="row pt-5 mt-2 text-center">
-          <div class="col-md-12">
-            <p>Copyright &copy; Kost Griya Bangun Widadi <b id="tampilthun"></b>
-              <br> <i class="icon-embed2" aria-hidden="true"></i>
-              with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://bagussp99.github.io"
-                target="_blank">Satria Artama </a>
-            </p>
-          </div>
-        </div>
-      </div>
-  </div>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container text-center small">
+      <p class="mb-1">
+        Copyright &copy; Kost Griya Bangun Widadi <span id="tampilthun" class="tabular-nums"></span>
+      </p>
+      <p class="mb-0">
+        <i class="bi bi-code-slash text-blue-main" aria-hidden="true"></i> with <i class="bi bi-heart-fill text-danger"
+          aria-hidden="true"></i> by
+        <a href="https://bagussp99.github.io" target="_blank" rel="noopener noreferrer" class="footer-author">Satria
+          Artama</a>
+      </p>
+    </div>
   </footer>
-  </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.countdown.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/bootstrap-datepicker.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
+  <!-- Tombol WhatsApp Mengambang -->
+  <a href="https://api.whatsapp.com/send?phone=6289662144999&text=Assalamualaikum%20Ibu,%20Saya%20(nama)%0AMau%20bertanya,%20Apakah%20dikost%20GriyaBangunWidadi%20masih%20ada%20kamar%20kosong%20yg%20tersedia?"
+    target="_blank" rel="noopener noreferrer" class="wa-sticky" aria-label="Chat WhatsApp dengan Pengelola Kost"
+    data-track="wa_floating" data-track-group="WhatsApp" data-track-label="WA: Tombol Melayang Pojok Bawah">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    <span>Tanya Kamar</span>
+  </a>
 
-  <script src="js/jquery.fancybox.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/tahun.js"></script>
+  <!-- Scripts dengan defer agar non-blocking -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" crossorigin="anonymous"
+    defer></script>
+  <script src="js/tahun.js" defer></script>
+  <script src="js/custom-gbw.js" defer></script>
 </body>
 </html>
