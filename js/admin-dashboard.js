@@ -1,5 +1,5 @@
 const firebaseConfig = {
-  apiKey: "ISI_API_KEY_FIREBASE_ANDA",
+  apiKey: "AIzaSyArZW4xQ7Fdt34c89aAid79aM5PBgmCLlw",
   authDomain: "kostgbw-a5372.firebaseapp.com",
   databaseURL: "https://kostgbw-a5372-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "kostgbw-a5372"
